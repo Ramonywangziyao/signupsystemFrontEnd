@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import history from './history';
 import "./Appplus.css";
 
-class terminationSuccess extends Component {
+class paySuccess extends Component {
   state = {
     redirect: false
   }
@@ -21,9 +21,9 @@ class terminationSuccess extends Component {
       return this.state.redirect ?
       <Redirect to='/' /> :
       <div>
-        <h3>终止成功</h3>
+        <h3>结算成功</h3>
       </div>
     }
 }
 
-export default terminationSuccess;
+export default paySuccess;

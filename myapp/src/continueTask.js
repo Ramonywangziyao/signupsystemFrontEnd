@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import history from './history';
-
+import "./Appplus.css";
 
 class continueTask extends Component {
   constructor(props) {
@@ -63,22 +63,23 @@ class continueTask extends Component {
 
     if(code == 1) {
       return (
-        <div className="canContinueTask">
+        <div>
+          <h2>要继续这个任务吗？</h2>
+          <div className="canContinueTask">
+            <h4 className="listTitle">id</h4>
+            <p className="listValue">{this.state.task.id}</p>
+            <h4 className="listTitle">件数</h4>
+            <p className="listValue">{this.state.task.numberOfItem}</p>
+            <h4 className="listTitle">目前总时长(秒)</h4>
+            <p className="listValue">{this.state.task.totalTime}</p>
+            <h4 className="listTitle">上次开始时间</h4>
+            <p className="listValue">{this.state.startTime == null ? "无" : this.state.startTime}</p>
+            <h4 className="listTitle">上次结束时间</h4>
+            <p className="listValue">{this.state.endTime == null ? "无" : this.state.endTime}</p>
+          </div><br/>
           <div>
-            <h4>id</h4>
-            <p>{this.state.task.id}</p>
-            <h4>件数</h4>
-            <p>{this.state.task.numberOfItem}</p>
-            <h4>目前总时长(秒)</h4>
-            <p>{this.state.task.totalTime}</p>
-            <h4>上次开始时间</h4>
-            <p>{this.state.startTime}</p>
-            <h4>上次结束时间</h4>
-            <p>{this.state.endTime}</p>
-          </div>
-          <div>
-            <Button onClick={this.submitContinue}>继续</Button>
-            <Button onClick={() => history.push('/')}>返回</Button>
+            <Button className="selectButton" onClick={this.submitContinue}>继续</Button><br/>
+            <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
           </div>
         </div>
       );
@@ -86,14 +87,14 @@ class continueTask extends Component {
       return (
         <div className="unableToContinueTask">
           <h3>没有正在进行的任务</h3>
-          <Button onClick={() => history.push('/')}>返回</Button>
+          <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
         </div>
       );
     } else if(code == 2) {
       return (
         <div className="unableToContinueTask">
-          <h3>已有开始的任务。请结束当前任务再创建新的任务。</h3>
-          <Button onClick={() => history.push('/')}>返回</Button>
+          <h3>已有开始的任务<br/>请结束当前任务再创建新的任务</h3>
+          <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
         </div>
       );
     }

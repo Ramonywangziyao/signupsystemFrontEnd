@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import { Redirect } from "react-router-dom";
 import history from './history';
-
+import "./Appplus.css";
 
 class createSuccess extends Component {
   state = {
@@ -23,7 +23,6 @@ class createSuccess extends Component {
       <div>
         <h3>创建成功</h3>
       </div>
-
     }
 }
 

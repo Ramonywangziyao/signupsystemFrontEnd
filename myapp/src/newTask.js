@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import history from './history';
-
+import "./Appplus.css";
 
 class newTask extends Component {
   constructor(props) {
@@ -66,17 +66,17 @@ class newTask extends Component {
         <div className="createNewTask">
           <h3>请输入件数</h3>
           <form>
-            <input type="text" value = {this.state.numberOfItem} onChange = {this.handleInputChange}/><br /><br />
-            <Button onClick={this.submitCreation}>创建</Button>
-            <Button onClick={() => history.push('/')}>返回</Button>
+            <input className="typeField" type="text" value = {this.state.numberOfItem} onChange = {this.handleInputChange}/><br /><br />
+            <Button className="selectButton" onClick={this.submitCreation}>创建</Button><br/>
+            <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
           </form>
         </div>
       );
     } else {
       return (
         <div className="unableToCreateTask">
-          <h3>有正在进行的任务。无法新建</h3>
-          <Button onClick={() => history.push('/')}>返回</Button>
+          <h3>有正在进行的任务<br/>无法新建</h3>
+          <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
         </div>
       );
     }

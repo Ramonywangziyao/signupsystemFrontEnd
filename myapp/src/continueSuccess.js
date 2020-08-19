@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import { Redirect } from "react-router-dom";
 import history from './history';
-
+import "./Appplus.css";
 
 class continueSuccess extends Component {
   state = {
