@@ -18,11 +18,11 @@ class stopSuccess extends Component {
   }
 
   render() {
-      return this.state.redirect ?
-      <Redirect to='/' /> :
+      return (
       <div>
         <h3>停止成功</h3>
       </div>
+      )
     }
 }
 

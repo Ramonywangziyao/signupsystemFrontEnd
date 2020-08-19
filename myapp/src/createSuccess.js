@@ -23,6 +23,7 @@ class createSuccess extends Component {
       <div>
         <h3>创建成功</h3>
       </div>
+
     }
 }
 

@@ -18,11 +18,11 @@ class continueSuccess extends Component {
   }
 
   render() {
-      return this.state.redirect ?
-      <Redirect to='/' /> :
+      return (
       <div>
         <h3>开始任务成功</h3>
       </div>
+      )
     }
 }
 
