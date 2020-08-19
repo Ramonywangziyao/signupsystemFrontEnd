@@ -91,7 +91,7 @@ class pay extends Component {
                     <h4 className="listTitle">目前总时长(秒)</h4>
                     <p className="listValue">{task.totalTime}</p>
                     <h4 className="listTitle">收入</h4>
-                    <p className="listValue">{task.income}</p>
+                    <p className="listValue">{task.income.toFixed(2)}</p>
                     <h4 className="listTitle">是否完成</h4>
                     <p className="listValue">{task.completed == 1 ? "已完成" : "进行中"}</p>
                     <h4 className="listTitle">是否结算工资</h4>

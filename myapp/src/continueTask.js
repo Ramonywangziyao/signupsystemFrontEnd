@@ -79,22 +79,19 @@ class continueTask extends Component {
           </div><br/>
           <div>
             <Button className="selectButton" onClick={this.submitContinue}>继续</Button><br/>
-            <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
           </div>
         </div>
       );
     } else if(code == -1) {
       return (
         <div className="unableToContinueTask">
-          <h3>没有正在进行的任务</h3>
-          <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
+          <h3>没有正在进行的打包单</h3>
         </div>
       );
     } else if(code == 2) {
       return (
         <div className="unableToContinueTask">
           <h3>已有开始的任务<br/>请结束当前任务再创建新的任务</h3>
-          <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
         </div>
       );
     }

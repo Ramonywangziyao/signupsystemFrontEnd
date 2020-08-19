@@ -32,12 +32,25 @@ class stats extends Component {
       return <p>Loading</p>
     }
     let totalIncome = 0;
+    let unpaidIncome = 0;
+    let paidIncome = 0;
+    let totalItems = 0;
     tasks.forEach((task) => {
       let createDate = new Date(task.createDate);
       task.createDate = createDate.toLocaleString();
       let terminateDate = task.terminateDate == null ? null : new Date(task.terminateDate);
       task.terminateDate = terminateDate == null ? null : terminateDate.toLocaleString();
-      totalIncome += task.income;
+
+      if(task.completed == 1) {
+        totalIncome += task.income;
+      }
+
+      totalItems += task.numberOfItem;
+      if(task.paid == 0) {
+        unpaidIncome += task.income;
+      } else {
+        paidIncome += task.income;
+      }
     });
 
 
@@ -45,11 +58,14 @@ class stats extends Component {
       return (
         <div className="taskStat">
           <h2>任务历史记录</h2>
-          <h3>当前总收入 $<span>{totalIncome.toFixed(2)}</span></h3>
+          <h4>当前一共打包了 <span>{totalItems} 件货</span></h4>
+          <h4>当前总收入 $<span>{totalIncome.toFixed(2)}</span></h4>
+          <h4>已结算金额 $<span>{paidIncome.toFixed(2)}</span></h4>
+          <h4>未结算金额 $<span>{unpaidIncome.toFixed(2)}</span></h4>
           <div>
             {
               tasks.map((task) => (
-                <div className="card">
+                <div className={task.completed == 1 ? "card" : "workingCard"}>
                   <h4 className="listTitle">id</h4>
                   <p className="listValue">{task.id}</p>
                   <h4 className="listTitle">件数</h4>
@@ -73,16 +89,12 @@ class stats extends Component {
               ))
             }
           </div>
-          <div>
-            <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
-          </div>
         </div>
       );
     } else {
       return (
         <div className="unableToContinueTask">
           <h3>未知错误</h3>
-          <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
         </div>
       );
     }

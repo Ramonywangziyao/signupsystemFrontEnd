@@ -12,6 +12,7 @@ import ContinueSuccess from "./continueSuccess";
 import StopSuccess from "./stopSuccess";
 import TerminationSuccess from "./terminationSuccess";
 import PaySuccess from "./paySuccess";
+import Unauthorized from "./unauthorized";
 import history from './history';
 
 export default class Routes extends Component {
@@ -31,6 +32,7 @@ export default class Routes extends Component {
                     <Route path="/stopSuccess" component={StopSuccess} />
                     <Route path="/terminationSuccess" component={TerminationSuccess} />
                     <Route path="/paySuccess" component={PaySuccess} />
+                    <Route path="/unauthorized" component={Unauthorized} />
                 </Switch>
             </Router>
         )

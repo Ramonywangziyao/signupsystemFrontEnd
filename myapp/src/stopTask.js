@@ -71,16 +71,14 @@ class stopTask extends Component {
             <p className="listValue">{this.state.startTime}</p>
           </div><br/>
           <div>
-            <Button className="selectButton" onClick={this.submitStop}>停止</Button><br/>
-            <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
+            <Button className="selectButton" onClick={this.submitStop}>暂停</Button><br/>
           </div>
         </div>
       );
     } else {
       return (
         <div className="unableToContinueTask">
-          <h3>没有正在进行的任务</h3>
-          <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
+          <h3>没有正在进行的打包单</h3>
         </div>
       );
     }

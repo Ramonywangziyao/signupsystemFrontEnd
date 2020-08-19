@@ -9,11 +9,13 @@ class newTask extends Component {
     this.state = {
       isLoading: true,
       available: false,
-      numberOfItem: 0
+      numberOfItem: 0,
+      password: ""
     };
 
     this.submitCreation = this.submitCreation.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
 
@@ -21,7 +23,7 @@ class newTask extends Component {
     const numberOfItem = this.state.numberOfItem;
 
     if(numberOfItem > 0) {
-      fetch('/checkInSystem/newTask', {
+      fetch('/checkInSystem/newTask?password=' + this.state.password, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -32,8 +34,11 @@ class newTask extends Component {
         })
       }).then(response => response.json()).then((data) => {
         const code = data.code;
+
         if(code == 1) {
           history.push('/createSuccess');
+        } else {
+          history.push('/unauthorized');
         }
       })
     }
@@ -41,6 +46,10 @@ class newTask extends Component {
 
   handleInputChange(e) {
     this.setState({numberOfItem: e.target.value});
+  }
+
+  handlePasswordChange(e) {
+    this.setState({password: e.target.value})
   }
 
   async componentDidMount() {
@@ -64,9 +73,11 @@ class newTask extends Component {
     if(available == true) {
       return (
         <div className="createNewTask">
-          <h3>请输入件数</h3>
           <form>
+            <h3>请输入件数</h3>
             <input className="typeField" type="text" value = {this.state.numberOfItem} onChange = {this.handleInputChange}/><br /><br />
+            <h3>请输入密码</h3>
+            <input className="typeField" type="password" value = {this.state.password} onChange = {this.handlePasswordChange}/><br /><br />
             <Button className="selectButton" onClick={this.submitCreation}>创建</Button><br/>
             <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
           </form>
@@ -75,7 +86,7 @@ class newTask extends Component {
     } else {
       return (
         <div className="unableToCreateTask">
-          <h3>有正在进行的任务<br/>无法新建</h3>
+          <h3>有正在进行的打包单<br/>无法新建</h3>
           <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
         </div>
       );

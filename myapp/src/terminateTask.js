@@ -11,15 +11,17 @@ class terminateTask extends Component {
       code: -1,
       task: null,
       startTime: null,
-      endTime: null
+      endTime: null,
+      password: ""
     };
 
     this.submitTerminate = this.submitTerminate.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
 
   submitTerminate(e) {
-    fetch('/checkInSystem/termination?taskId=' + this.state.task.id, {
+    fetch('/checkInSystem/termination?taskId=' + this.state.task.id + '&password=' + this.state.password, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -29,8 +31,14 @@ class terminateTask extends Component {
       const code = data.code;
       if(code == 1) {
         history.push('/terminationSuccess');
+      } else {
+        history.push('/unauthorized');
       }
     })
+  }
+
+  handlePasswordChange(e) {
+    this.setState({password: e.target.value})
   }
 
   async componentDidMount() {
@@ -76,8 +84,10 @@ class terminateTask extends Component {
             <p className="listValue">{this.state.startTime == null ? "无" : this.state.startTime}</p>
             <h4 className="listTitle">上次结束时间</h4>
             <p className="listValue">{this.state.endTime == null ? "无" : this.state.endTime}</p>
-          </div><br/>
+          </div>
           <div>
+            <h3>请输入密码</h3>
+            <input className="typeField" type="password" value = {this.state.password} onChange = {this.handlePasswordChange}/><br /><br />
             <Button className="selectButton" onClick={this.submitTerminate}>终止</Button><br/>
             <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
           </div>
@@ -94,7 +104,7 @@ class terminateTask extends Component {
       return (
         <div className="unableToContinueTask">
           <h3>没有正在进行的任务</h3>
-          <Button onClick={() => history.push('/')}>返回</Button>
+          <Button className="selectButton" onClick={() => history.push('/')}>返回</Button>
         </div>
       );
     }

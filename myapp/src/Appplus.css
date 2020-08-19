@@ -57,8 +57,13 @@
 }
 
 .card {
-    background-color: #393939;
-    color: #ffffff;
+  background-color: #393939;
+  color: #ffffff;
+}
+
+.workingCard {
+  background-color: #4e8c24;
+  color: #ffffff;
 }
 
 .checkBox {
